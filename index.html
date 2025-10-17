@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Vyltryn — Portfolio Demo</title>
+
+  <!-- Replace G-XXXXXXX with your GA Measurement ID (see notes) -->
+  <!-- Google Analytics (paste Measurement ID here later) -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXX');
+  </script> -->
+
+  <style>
+    @font-face{
+      font-family: 'NourdLike';
+      src: local('Nourd'), local('Arial');
+      font-weight: 600;
+    }
+    :root{
+      --bg:#0b0b0b;
+      --card:#141414;
+      --muted:#9aa0a6;
+      --accent:#2bd4ff;
+      --maxw:980px;
+    }
+    html,body{height:100%;margin:0;background:var(--bg);color:#e6e7e8;font-family: 'NourdLike', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+    .wrap{min-height:100%;display:flex;align-items:center;justify-content:center;padding:48px;}
+    .card{width:100%;max-width:var(--maxw);background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid rgba(255,255,255,0.04);padding:40px;border-radius:12px;display:flex;gap:28px;align-items:center;}
+    .logo{width:84px;height:84px;flex:0 0 84px;}
+    .title{font-size:20px;font-weight:700;letter-spacing:0.6px;margin:0;}
+    .subtitle{color:var(--muted);margin-top:8px;font-size:13px;}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px;}
+    .skill{background:var(--card);padding:14px;border-radius:8px;border:1px solid rgba(255,255,255,0.02);font-size:13px;text-align:center;}
+    a.cta{display:inline-block;margin-top:20px;padding:10px 14px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--accent);text-decoration:none;font-weight:600;}
+    footer{margin-top:20px;color:var(--muted);font-size:12px;}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <main class="card" role="main">
+      <img class="logo" src="https://raw.githubusercontent.com/VyltrynSolutions/Assets/7a6b04860e4ff06ca087654c258852ff9a449eeb/Vyltryn%20Logo%20(Transparent%20BG).svg" alt="Vyltryn logo">
+      <div style="flex:1">
+        <h1 class="title">Vyltryn — Web Portfolio Demo</h1>
+        <div class="subtitle">Minimal, dark, professional — a quick preview of UI, UX, and web development skills.</div>
+
+        <div class="grid" aria-hidden="false">
+          <div class="skill">Web Development</div>
+          <div class="skill">Mobile App</div>
+          <div class="skill">SEO & Marketing</div>
+          <div class="skill">Graphic Design</div>
+          <div class="skill">UI Design</div>
+          <div class="skill">System Integration</div>
+        </div>
+
+        <a class="cta" href="#" onclick="alert('This is a static demo. Full projects available on request.')">View case study</a>
+
+        <footer>© 2025 Vyltryn Solutions. All rights reserved.</footer>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

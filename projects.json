@@ -1,46 +1,44 @@
-{
-  "portfolio": [
-    {
-      "title": "Vyltryn Demo - Single Page",
-      "category": "Web Development",
-      "description": "A responsive single-page site built with HTML, CSS, and JavaScript — designed to demonstrate speed, functionality, and aesthetic balance.",
-      "link": "https://vyltrynsolutions.github.io/vyltryn-demo/"
-    },
-    {
-      "title": "Mobile Game Alpha",
-      "category": "Game & Mobile App Development",
-      "description": "A lightweight prototype demonstrating core gameplay mechanics and mobile optimization, built using Unity and C#.",
-      "link": "https://vyltrynsolutions.github.io/mobile-game-alpha/"
-    },
-    {
-      "title": "SEO Optimization Strategy",
-      "category": "SEO & Digital Marketing",
-      "description": "A comprehensive SEO strategy demo showcasing keyword targeting, on-page optimization, and analytics tracking setup.",
-      "link": "https://vyltrynsolutions.github.io/seo-strategy/"
-    },
-    {
-      "title": "Brand Design Concepts",
-      "category": "Graphic Design",
-      "description": "Clean, modern branding mockups demonstrating logo design, color theory, and layout composition.",
-      "link": "https://vyltrynsolutions.github.io/brand-design/"
-    },
-    {
-      "title": "Interface Concept - Dashboard UI",
-      "category": "Graphic UI",
-      "description": "A sleek dashboard user interface prototype focused on hierarchy, readability, and usability.",
-      "link": "https://vyltrynsolutions.github.io/ui-dashboard/"
-    },
-    {
-      "title": "User Experience Flow - App Prototype",
-      "category": "Graphic UX",
-      "description": "A structured UX flow prototype built to demonstrate smooth transitions, intuitive navigation, and human-centered design.",
-      "link": "https://vyltrynsolutions.github.io/ux-flow/"
-    },
-    {
-      "title": "System Integration Overview",
-      "category": "Management & System Integration",
-      "description": "An example integration flow demonstrating API connectivity, data management, and workflow automation.",
-      "link": "https://vyltrynsolutions.github.io/system-integration/"
-    }
-  ]
-}
+[
+  {
+    "title": "Vyltryn Demo - Single Page",
+    "category": "Web Development",
+    "description": "A responsive single-page site built with HTML, CSS, and JavaScript — designed to demonstrate speed, functionality, and aesthetic balance.",
+    "link": "https://vyltrynsolutions.github.io/vyltryn-demo/"
+  },
+  {
+    "title": "Mobile Game Alpha",
+    "category": "Game & Mobile App Development",
+    "description": "A lightweight prototype demonstrating core gameplay mechanics and mobile optimization, built using Unity and C#.",
+    "link": "https://vyltrynsolutions.github.io/mobile-game-alpha/"
+  },
+  {
+    "title": "SEO Optimization Strategy",
+    "category": "SEO & Digital Marketing",
+    "description": "A comprehensive SEO strategy demo showcasing keyword targeting, on-page optimization, and analytics tracking setup.",
+    "link": "https://vyltrynsolutions.github.io/seo-strategy/"
+  },
+  {
+    "title": "Brand Design Concepts",
+    "category": "Graphic Design",
+    "description": "Clean, modern branding mockups demonstrating logo design, color theory, and layout composition.",
+    "link": "https://vyltrynsolutions.github.io/brand-design/"
+  },
+  {
+    "title": "Interface Concept - Dashboard UI",
+    "category": "Graphic UI",
+    "description": "A sleek dashboard user interface prototype focused on hierarchy, readability, and usability.",
+    "link": "https://vyltrynsolutions.github.io/ui-dashboard/"
+  },
+  {
+    "title": "User Experience Flow - App Prototype",
+    "category": "Graphic UX",
+    "description": "A structured UX flow prototype built to demonstrate smooth transitions, intuitive navigation, and human-centered design.",
+    "link": "https://vyltrynsolutions.github.io/ux-flow/"
+  },
+  {
+    "title": "System Integration Overview",
+    "category": "Management & System Integration",
+    "description": "An example integration flow demonstrating API connectivity, data management, and workflow automation.",
+    "link": "https://vyltrynsolutions.github.io/system-integration/"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "title": "Vyltryn Demo — Single Page",
+    "category": "Web Development",
+    "year": "2025",
+    "short": "A minimal demo site showing UI/UX and responsive layout.",
+    "long": "Built a minimal, dark-themed portfolio demo showcasing web development skills: responsive grid, modal case study, and static JSON-driven project list.",
+    "tech": ["HTML", "CSS", "Vanilla JS"],
+    "image": "https://raw.githubusercontent.com/VyltrynSolutions/Assets/main/demo-screenshot-1.png",
+    "links": [
+      {"label":"Live demo","href":"https://vyltrynsolutions.github.io/your-repo-name"},
+      {"label":"Source code","href":"https://github.com/VyltrynSolutions/your-repo-name"}
+    ]
+  },
+  {
+    "title": "Mobile Game Alpha",
+    "category": "Game & Mobile App",
+    "year": "2024",
+    "short": "Casual mobile game prototype with social features.",
+    "long": "Prototype built in Unity. Implemented touch controls, simple monetization demo, and an achievements system.",
+    "tech": ["Unity","C#","Firebase"],
+    "image": "https://raw.githubusercontent.com/VyltrynSolutions/Assets/main/game-screenshot.png",
+    "links": [
+      {"label":"Play (video)","href":"https://youtu.be/example"},
+      {"label":"Case study repo","href":"https://github.com/VyltrynSolutions/game-project"}
+    ]
+  }
+]

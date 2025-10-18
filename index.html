@@ -38,7 +38,7 @@
     html,body{height:100%;margin:0;background:var(--bg);color:#e6e7e8;font-family: 'NourdLike', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
     .wrap{min-height:100%;display:flex;align-items:flex-start;justify-content:center;padding:48px 18px;}
     .card{width:100%;max-width:var(--maxw);background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid rgba(255,255,255,0.04);padding:28px;border-radius:var(--radius);display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap;}
-    .logo{width:84px;height:84px;flex:0 0 84px;object-fit:contain;}
+    .logo{width:252px;height:252px;flex:0 0 252px;object-fit:contain;} /* 3x larger */
     .title{font-size:20px;font-weight:700;letter-spacing:0.6px;margin:0;}
     .subtitle{color:var(--muted);margin-top:8px;font-size:13px;line-height:1.3;}
     .top-row{display:flex;gap:18px;align-items:center;width:100%;}
@@ -52,13 +52,13 @@
     /* ---- Projects area ---- */
     .projects-wrap{flex-basis:100%;margin-top:var(--gap);}
     .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
-    .project-tile{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);min-height:110px;display:flex;flex-direction:column;justify-content:space-between;}
-    .project-title{font-weight:700;margin:0 0 6px 0;font-size:14px;}
+    .project-tile{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);min-height:110px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;}
+    .project-title{font-weight:700;margin:0 0 6px 0;font-size:14px;color:var(--accent);} /* accent color for clickable feel */
     .project-meta{color:var(--muted);font-size:12px;}
 
     /* ---- modal ---- */
     .modal-backdrop{position:fixed;left:0;right:0;top:0;bottom:0;background:rgba(2,2,2,0.6);display:none;align-items:center;justify-content:center;z-index:999;}
-    .modal{width:min(900px,94%);background:linear-gradient(180deg, #0e0e0e, #0b0b0b);border-radius:12px;padding:22px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 20px 60px rgba(0,0,0,0.8);}
+    .modal{width:min(900px,94%);background:linear-gradient(180deg, #0e0e0e, #0b0b0b);border-radius:12px;padding:22px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 20px 60px rgba(0,0,0,0.8);max-height:92vh;overflow:auto;}
     .modal-grid{display:grid;grid-template-columns:1fr 320px;gap:16px;}
     .modal-img{width:100%;height:240px;border-radius:8px;object-fit:cover;background:linear-gradient(45deg, rgba(255,255,255,0.02), transparent);}
     .modal-close{float:right;background:transparent;border:0;color:var(--muted);font-size:18px;cursor:pointer;}
@@ -74,10 +74,12 @@
       .modal-grid{grid-template-columns:1fr;}
     }
     @media (max-width:560px){
+      /* center the logo on mobile and stack */
+      .top-row{flex-direction:column;align-items:center;}
+      .left{min-width:unset;text-align:center;}
+      .logo{width:252px;height:252px;margin:0 auto 10px auto;} /* still large, centered */
       .grid{grid-template-columns:repeat(1,1fr);}
       .projects-grid{grid-template-columns:repeat(1,1fr);}
-      .top-row{flex-direction:column;align-items:flex-start;}
-      .logo{width:64px;height:64px;}
     }
   </style>
 </head>
@@ -109,7 +111,7 @@
 
   <!-- Modal for case study -->
   <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-hidden="true">
-    <div class="modal" role="document" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal" id="modalContent" role="document" aria-modal="true" aria-labelledby="modalTitle">
       <button class="modal-close" title="Close" onclick="closeModal()">✕</button>
       <div class="modal-grid">
         <div>
@@ -128,13 +130,23 @@
   <script>
     /* ========== Simple "admin" model:
        - projects.json lives next to this index.html in the repo
-       - it's a JSON array. Example shown in step-by-step below.
+       - it's a JSON array.
     ========== */
 
     // Helper: sanitize text for simple display
     function escapeHtml(text){
-      if(!text) return '';
-      return text.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+      if(!text && text !== 0) return '';
+      return String(text).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+    }
+
+    // Small helper to detect "source" style links and hide them (won't show source code links)
+    function isSourceLink(link){
+      if(!link) return false;
+      const label = (link.label || '').toLowerCase();
+      const href = (link.href || '').toLowerCase();
+      if(/source|repo|github|repository/.test(label)) return true;
+      if(/github\.com|gitlab\.com/.test(href)) return true;
+      return false;
     }
 
     // Load projects.json and populate the grid
@@ -153,7 +165,7 @@
                               <div class="project-title">${escapeHtml(p.title)}</div>
                               <div class="project-meta">${escapeHtml(p.category)} · ${escapeHtml(p.year||'—')}</div>
                             </div>
-                            <div style="margin-top:10px;color:var(--muted);font-size:12px">${escapeHtml(p.short || '')}</div>`;
+                            <div style="margin-top:10px;color:var(--muted);font-size:12px">${escapeHtml(p.short || p.description || '')}</div>`;
           grid.appendChild(tile);
         });
       }catch(err){
@@ -178,12 +190,14 @@
       document.getElementById('modalImg').src = p.image || '';
       document.getElementById('modalImg').alt = p.title || '';
       document.getElementById('modalTitle').textContent = p.title || '';
-      document.getElementById('modalDesc').textContent = p.long || p.short || '';
-      document.getElementById('modalTech').textContent = (p.tech && p.tech.join(' • ')) || '';
+      document.getElementById('modalDesc').textContent = p.long || p.short || p.description || '';
+      document.getElementById('modalTech').textContent = (Array.isArray(p.tech) && p.tech.length) ? p.tech.join(' • ') : (p.tech || '');
       const linksDiv = document.getElementById('modalLinks');
       linksDiv.innerHTML = '';
+
       if(Array.isArray(p.links)){
         p.links.forEach(l => {
+          if(isSourceLink(l)) return; // skip "source" links
           const a = document.createElement('a');
           a.href = l.href || '#';
           a.target = "_blank";
@@ -191,10 +205,18 @@
           a.textContent = l.label || 'Open';
           linksDiv.appendChild(a);
         });
+      } else if(p.link && typeof p.link === 'string') {
+        // fallback: if JSON uses `link` property, show it
+        const a = document.createElement('a');
+        a.href = p.link;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.textContent = 'Open';
+        linksDiv.appendChild(a);
       }
+
       back.style.display = 'flex';
       back.setAttribute('aria-hidden','false');
-      // trap focus if needed later
     }
     function closeModal(){
       const back = document.getElementById('modalBackdrop');
@@ -202,13 +224,28 @@
       back.setAttribute('aria-hidden','true');
     }
 
-    // Quick demo open (calls first project)
+    // Close modal when clicking the backdrop (outside the modal content)
+    document.getElementById('modalBackdrop').addEventListener('click', (e) => {
+      // Only close if clicking the backdrop itself (not the modal content)
+      if (e.target && e.target.id === 'modalBackdrop') {
+        closeModal();
+      }
+    });
+
+    // Close modal with Esc key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // Quick demo open (calls LAST project)
     async function openExample(){
       try{
         const res = await fetch('projects.json', {cache:'no-store'});
         const projects = await res.json();
-        if(projects && projects.length) openModal(projects[0]);
-        else alert('No projects found in projects.json — see step-by-step to add one.');
+        if(projects && projects.length) {
+          const last = projects[projects.length - 1];
+          openModal(last);
+        } else alert('No projects found in projects.json — see step-by-step to add one.');
       }catch(e){
         alert('projects.json not found — see the instructions in this repo.');
       }

@@ -1,66 +1,221 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XQMS46WXQ7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Google tag (gtag.js) - keep your tracking id as-is -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQMS46WXQ7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XQMS46WXQ7');
+  </script>
 
-  gtag('config', 'G-XQMS46WXQ7');
-</script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Vyltryn — Portfolio Demo</title>
 
   <style>
+    /* ---- Font (keeps your Nourd fallback) ---- */
     @font-face{
       font-family: 'NourdLike';
       src: local('Nourd'), local('Arial');
       font-weight: 600;
     }
+
+    /* ---- Palette (change --accent to any hex above) ---- */
     :root{
-      --bg:#0b0b0b;
-      --card:#141414;
-      --muted:#9aa0a6;
-      --accent:#2bd4ff;
+      --bg:#0b0b0b;           /* page background */
+      --card:#141414;         /* cards */
+      --muted:#9aa0a6;        /* secondary text */
+      --accent:#2bd4ff;       /* primary accent (change if desired) */
+      --accent-weak: rgba(43,212,255,0.12);
       --maxw:980px;
+      --radius:12px;
+      --gap:22px;
     }
+
+    /* ---- Base styles ---- */
     html,body{height:100%;margin:0;background:var(--bg);color:#e6e7e8;font-family: 'NourdLike', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
-    .wrap{min-height:100%;display:flex;align-items:center;justify-content:center;padding:48px;}
-    .card{width:100%;max-width:var(--maxw);background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid rgba(255,255,255,0.04);padding:40px;border-radius:12px;display:flex;gap:28px;align-items:center;}
-    .logo{width:84px;height:84px;flex:0 0 84px;}
+    .wrap{min-height:100%;display:flex;align-items:flex-start;justify-content:center;padding:48px 18px;}
+    .card{width:100%;max-width:var(--maxw);background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid rgba(255,255,255,0.04);padding:28px;border-radius:var(--radius);display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap;}
+    .logo{width:84px;height:84px;flex:0 0 84px;object-fit:contain;}
     .title{font-size:20px;font-weight:700;letter-spacing:0.6px;margin:0;}
-    .subtitle{color:var(--muted);margin-top:8px;font-size:13px;}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px;}
-    .skill{background:var(--card);padding:14px;border-radius:8px;border:1px solid rgba(255,255,255,0.02);font-size:13px;text-align:center;}
-    a.cta{display:inline-block;margin-top:20px;padding:10px 14px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--accent);text-decoration:none;font-weight:600;}
-    footer{margin-top:20px;color:var(--muted);font-size:12px;}
+    .subtitle{color:var(--muted);margin-top:8px;font-size:13px;line-height:1.3;}
+    .top-row{display:flex;gap:18px;align-items:center;width:100%;}
+    .left{flex:1;min-width:180px;}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px;width:100%;}
+    .skill{background:var(--card);padding:14px;border-radius:8px;border:1px solid rgba(255,255,255,0.02);font-size:13px;text-align:center;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease;}
+    .skill:hover{transform:translateY(-4px);box-shadow:0 6px 18px rgba(0,0,0,0.6);outline:2px solid var(--accent-weak);}
+    .cta{display:inline-block;margin-top:18px;padding:10px 14px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--accent);text-decoration:none;font-weight:600;}
+    footer{margin-top:18px;color:var(--muted);font-size:12px;}
+
+    /* ---- Projects area ---- */
+    .projects-wrap{flex-basis:100%;margin-top:var(--gap);}
+    .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+    .project-tile{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);min-height:110px;display:flex;flex-direction:column;justify-content:space-between;}
+    .project-title{font-weight:700;margin:0 0 6px 0;font-size:14px;}
+    .project-meta{color:var(--muted);font-size:12px;}
+
+    /* ---- modal ---- */
+    .modal-backdrop{position:fixed;left:0;right:0;top:0;bottom:0;background:rgba(2,2,2,0.6);display:none;align-items:center;justify-content:center;z-index:999;}
+    .modal{width:min(900px,94%);background:linear-gradient(180deg, #0e0e0e, #0b0b0b);border-radius:12px;padding:22px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 20px 60px rgba(0,0,0,0.8);}
+    .modal-grid{display:grid;grid-template-columns:1fr 320px;gap:16px;}
+    .modal-img{width:100%;height:240px;border-radius:8px;object-fit:cover;background:linear-gradient(45deg, rgba(255,255,255,0.02), transparent);}
+    .modal-close{float:right;background:transparent;border:0;color:var(--muted);font-size:18px;cursor:pointer;}
+    .modal h3{margin:0 0 8px 0;}
+    .modal p{color:#d7d9da;margin:0 0 12px 0;line-height:1.45;}
+    .tech{font-size:12px;color:var(--muted);margin-bottom:12px;}
+    .links a{display:inline-block;margin-right:8px;margin-bottom:6px;padding:8px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);text-decoration:none;font-weight:600;color:var(--accent);}
+
+    /* ---- responsive ---- */
+    @media (max-width:900px){
+      .grid{grid-template-columns:repeat(2,1fr);}
+      .projects-grid{grid-template-columns:repeat(2,1fr);}
+      .modal-grid{grid-template-columns:1fr;}
+    }
+    @media (max-width:560px){
+      .grid{grid-template-columns:repeat(1,1fr);}
+      .projects-grid{grid-template-columns:repeat(1,1fr);}
+      .top-row{flex-direction:column;align-items:flex-start;}
+      .logo{width:64px;height:64px;}
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
     <main class="card" role="main">
-      <img class="logo" src="https://raw.githubusercontent.com/VyltrynSolutions/Assets/7a6b04860e4ff06ca087654c258852ff9a449eeb/Vyltryn%20Logo%20(Transparent%20BG).svg" alt="Vyltryn logo">
-      <div style="flex:1">
-        <h1 class="title">Vyltryn — Web Portfolio Demo</h1>
-        <div class="subtitle">Minimal, dark, professional — a quick preview of UI, UX, and web development skills.</div>
-
-        <div class="grid" aria-hidden="false">
-          <div class="skill">Web Development</div>
-          <div class="skill">Mobile App</div>
-          <div class="skill">SEO & Marketing</div>
-          <div class="skill">Graphic Design</div>
-          <div class="skill">UI Design</div>
-          <div class="skill">System Integration</div>
+      <div class="top-row">
+        <!-- Replace the src with your logo path if needed -->
+        <img class="logo" id="logoImg" src="https://raw.githubusercontent.com/VyltrynSolutions/Assets/7a6b04860e4ff06ca087654c258852ff9a449eeb/Vyltryn%20Logo%20(Transparent%20BG).svg" alt="Vyltryn logo">
+        <div class="left">
+          <h1 class="title">Vyltryn — Web Portfolio Demo</h1>
+          <div class="subtitle">Minimal, dark, professional — a quick preview of UI, UX, and web & app development skills. Click any tile to open a short case study with links.</div>
+          <div style="margin-top:12px">
+            <a class="cta" href="#" onclick="openExample()">Quick demo: Open latest project</a>
+          </div>
         </div>
-
-        <a class="cta" href="#" onclick="alert('This is a static demo. Full projects available on request.')">View case study</a>
-
-        <footer>© 2025 Vyltryn Solutions. All rights reserved.</footer>
       </div>
+
+      <!-- Projects list (populated from projects.json) -->
+      <section class="projects-wrap" aria-labelledby="projectsHeading">
+        <h2 id="projectsHeading" style="font-size:13px;margin:0 0 10px 0;color:var(--muted)">Portfolio</h2>
+        <div class="projects-grid" id="projectsGrid" aria-live="polite">
+          <!-- JS will inject project tiles here -->
+        </div>
+        <footer>© 2025 Vyltryn Solutions. All rights reserved.</footer>
+      </section>
     </main>
   </div>
+
+  <!-- Modal for case study -->
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-hidden="true">
+    <div class="modal" role="document" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" title="Close" onclick="closeModal()">✕</button>
+      <div class="modal-grid">
+        <div>
+          <img src="" class="modal-img" id="modalImg" alt="">
+          <h3 id="modalTitle">Title</h3>
+          <p id="modalDesc">Description</p>
+        </div>
+        <aside>
+          <div class="tech" id="modalTech">Tech</div>
+          <div class="links" id="modalLinks"></div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ========== Simple "admin" model:
+       - projects.json lives next to this index.html in the repo
+       - it's a JSON array. Example shown in step-by-step below.
+    ========== */
+
+    // Helper: sanitize text for simple display
+    function escapeHtml(text){
+      if(!text) return '';
+      return text.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+    }
+
+    // Load projects.json and populate the grid
+    async function loadProjects(){
+      try{
+        const res = await fetch('projects.json', {cache: "no-store"});
+        if(!res.ok) throw new Error('projects.json not found');
+        const projects = await res.json();
+        const grid = document.getElementById('projectsGrid');
+        grid.innerHTML = '';
+        projects.forEach((p, i) => {
+          const tile = document.createElement('button');
+          tile.className = 'project-tile';
+          tile.onclick = () => openModal(p);
+          tile.innerHTML = `<div>
+                              <div class="project-title">${escapeHtml(p.title)}</div>
+                              <div class="project-meta">${escapeHtml(p.category)} · ${escapeHtml(p.year||'—')}</div>
+                            </div>
+                            <div style="margin-top:10px;color:var(--muted);font-size:12px">${escapeHtml(p.short || '')}</div>`;
+          grid.appendChild(tile);
+        });
+      }catch(err){
+        console.warn(err);
+        // Fallback: show static tiles if projects.json missing
+        const grid = document.getElementById('projectsGrid');
+        if(grid.children.length === 0){
+          const sample = ['Web Development','Mobile App','SEO & Marketing','Graphic Design','UI Design','System Integration'];
+          sample.forEach(s => {
+            const tile = document.createElement('div');
+            tile.className = 'project-tile';
+            tile.innerHTML = `<div class="project-title">${s}</div><div class="project-meta">Category overview</div>`;
+            grid.appendChild(tile);
+          });
+        }
+      }
+    }
+
+    // Modal controls
+    function openModal(p){
+      const back = document.getElementById('modalBackdrop');
+      document.getElementById('modalImg').src = p.image || '';
+      document.getElementById('modalImg').alt = p.title || '';
+      document.getElementById('modalTitle').textContent = p.title || '';
+      document.getElementById('modalDesc').textContent = p.long || p.short || '';
+      document.getElementById('modalTech').textContent = (p.tech && p.tech.join(' • ')) || '';
+      const linksDiv = document.getElementById('modalLinks');
+      linksDiv.innerHTML = '';
+      if(Array.isArray(p.links)){
+        p.links.forEach(l => {
+          const a = document.createElement('a');
+          a.href = l.href || '#';
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+          a.textContent = l.label || 'Open';
+          linksDiv.appendChild(a);
+        });
+      }
+      back.style.display = 'flex';
+      back.setAttribute('aria-hidden','false');
+      // trap focus if needed later
+    }
+    function closeModal(){
+      const back = document.getElementById('modalBackdrop');
+      back.style.display = 'none';
+      back.setAttribute('aria-hidden','true');
+    }
+
+    // Quick demo open (calls first project)
+    async function openExample(){
+      try{
+        const res = await fetch('projects.json', {cache:'no-store'});
+        const projects = await res.json();
+        if(projects && projects.length) openModal(projects[0]);
+        else alert('No projects found in projects.json — see step-by-step to add one.');
+      }catch(e){
+        alert('projects.json not found — see the instructions in this repo.');
+      }
+    }
+
+    // init
+    loadProjects();
+  </script>
 </body>
 </html>

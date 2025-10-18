@@ -1,28 +1,46 @@
-[
-  {
-    "title": "Vyltryn Demo — Single Page",
-    "category": "Web Development",
-    "year": "2025",
-    "short": "A minimal demo site showing UI/UX and responsive layout.",
-    "long": "Built a minimal, dark-themed portfolio demo showcasing web development skills: responsive grid, modal case study, and static JSON-driven project list.",
-    "tech": ["HTML", "CSS", "Vanilla JS"],
-    "image": "https://raw.githubusercontent.com/VyltrynSolutions/Assets/main/demo-screenshot-1.png",
-    "links": [
-      {"label":"Live demo","href":"https://vyltrynsolutions.github.io/your-repo-name"},
-      {"label":"Source code","href":"https://github.com/VyltrynSolutions/your-repo-name"}
-    ]
-  },
-  {
-    "title": "Mobile Game Alpha",
-    "category": "Game & Mobile App",
-    "year": "2024",
-    "short": "Casual mobile game prototype with social features.",
-    "long": "Prototype built in Unity. Implemented touch controls, simple monetization demo, and an achievements system.",
-    "tech": ["Unity","C#","Firebase"],
-    "image": "https://raw.githubusercontent.com/VyltrynSolutions/Assets/main/game-screenshot.png",
-    "links": [
-      {"label":"Play (video)","href":"https://youtu.be/example"},
-      {"label":"Case study repo","href":"https://github.com/VyltrynSolutions/game-project"}
-    ]
-  }
-]
+{
+  "portfolio": [
+    {
+      "title": "Vyltryn Demo - Single Page",
+      "category": "Web Development",
+      "description": "A responsive single-page site built with HTML, CSS, and JavaScript — designed to demonstrate speed, functionality, and aesthetic balance.",
+      "link": "https://vyltrynsolutions.github.io/vyltryn-demo/"
+    },
+    {
+      "title": "Mobile Game Alpha",
+      "category": "Game & Mobile App Development",
+      "description": "A lightweight prototype demonstrating core gameplay mechanics and mobile optimization, built using Unity and C#.",
+      "link": "https://vyltrynsolutions.github.io/mobile-game-alpha/"
+    },
+    {
+      "title": "SEO Optimization Strategy",
+      "category": "SEO & Digital Marketing",
+      "description": "A comprehensive SEO strategy demo showcasing keyword targeting, on-page optimization, and analytics tracking setup.",
+      "link": "https://vyltrynsolutions.github.io/seo-strategy/"
+    },
+    {
+      "title": "Brand Design Concepts",
+      "category": "Graphic Design",
+      "description": "Clean, modern branding mockups demonstrating logo design, color theory, and layout composition.",
+      "link": "https://vyltrynsolutions.github.io/brand-design/"
+    },
+    {
+      "title": "Interface Concept - Dashboard UI",
+      "category": "Graphic UI",
+      "description": "A sleek dashboard user interface prototype focused on hierarchy, readability, and usability.",
+      "link": "https://vyltrynsolutions.github.io/ui-dashboard/"
+    },
+    {
+      "title": "User Experience Flow - App Prototype",
+      "category": "Graphic UX",
+      "description": "A structured UX flow prototype built to demonstrate smooth transitions, intuitive navigation, and human-centered design.",
+      "link": "https://vyltrynsolutions.github.io/ux-flow/"
+    },
+    {
+      "title": "System Integration Overview",
+      "category": "Management & System Integration",
+      "description": "An example integration flow demonstrating API connectivity, data management, and workflow automation.",
+      "link": "https://vyltrynsolutions.github.io/system-integration/"
+    }
+  ]
+}

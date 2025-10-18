@@ -7,7 +7,6 @@
     "tech": ["HTML", "CSS", "JavaScript"],
     "links": [
       { "label": "View Demo", "href": "https://vyltrynsolutions.github.io/vyltryn-demo/" },
-      { "label": "Source Code", "href": "https://github.com/VyltrynSolutions/vyltryn-demo" }
     ]
   },
   {
@@ -18,7 +17,6 @@
     "tech": ["Unity", "C#"],
     "links": [
       { "label": "View Demo", "href": "https://vyltrynsolutions.github.io/mobile-game-alpha/" },
-      { "label": "Source Code", "href": "https://github.com/VyltrynSolutions/mobile-game-alpha" }
     ]
   },
   {

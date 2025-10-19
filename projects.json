@@ -19,6 +19,7 @@
     "links": [
       { "label": "View Demo", "href": "https://vyltrynsolutions.github.io/mobile-game-alpha/" }
     ]
+    ,"image": "https://raw.githubusercontent.com/VyltrynSolutions/Assets/7a6b04860e4ff06ca087654c258852ff9a449eeb/Vyltryn%20Logo%20(Transparent%20BG).svg"
   },
   {
     "title": "SEO Optimization Strategy",
@@ -29,6 +30,7 @@
     "links": [
       { "label": "View Demo", "href": "https://vyltrynsolutions.github.io/seo-strategy/" }
     ]
+    ,"image": "https://raw.githubusercontent.com/VyltrynSolutions/Assets/7a6b04860e4ff06ca087654c258852ff9a449eeb/Vyltryn%20Logo%20(Transparent%20BG).svg"
   },
   {
     "title": "Brand Design Concepts",
@@ -39,6 +41,7 @@
     "links": [
       { "label": "View Gallery", "href": "https://vyltrynsolutions.github.io/brand-design/" }
     ]
+    ,"image": "https://raw.githubusercontent.com/VyltrynSolutions/Assets/7a6b04860e4ff06ca087654c258852ff9a449eeb/Vyltryn%20Logo%20(Transparent%20BG).svg"
   },
   {
     "title": "Interface Concept - Dashboard UI",
@@ -49,6 +52,7 @@
     "links": [
       { "label": "View UI", "href": "https://vyltrynsolutions.github.io/ui-dashboard/" }
     ]
+    ,"image": "https://raw.githubusercontent.com/VyltrynSolutions/Assets/7a6b04860e4ff06ca087654c258852ff9a449eeb/Vyltryn%20Logo%20(Transparent%20BG).svg"
   },
   {
     "title": "User Experience Flow - App Prototype",
@@ -59,6 +63,7 @@
     "links": [
       { "label": "View UX Flow", "href": "https://vyltrynsolutions.github.io/ux-flow/" }
     ]
+    ,"image": "https://raw.githubusercontent.com/VyltrynSolutions/Assets/7a6b04860e4ff06ca087654c258852ff9a449eeb/Vyltryn%20Logo%20(Transparent%20BG).svg"
   },
   {
     "title": "System Integration Overview",
@@ -69,5 +74,6 @@
     "links": [
       { "label": "View Overview", "href": "https://vyltrynsolutions.github.io/system-integration/" }
     ]
+    ,"image": "https://raw.githubusercontent.com/VyltrynSolutions/Assets/7a6b04860e4ff06ca087654c258852ff9a449eeb/Vyltryn%20Logo%20(Transparent%20BG).svg"
   }
 ]

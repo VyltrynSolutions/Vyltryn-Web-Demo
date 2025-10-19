@@ -6,7 +6,7 @@
     "long": "This project demonstrates the fundamentals of front-end web development, focusing on responsiveness, lightweight performance, and clean design principles. The layout is built with pure HTML, CSS, and vanilla JavaScript for maximum control and transparency.",
     "tech": ["HTML", "CSS", "JavaScript"],
     "links": [
-      { "label": "View Demo", "href": "https://vyltrynsolutions.github.io/vyltryn-demo/" }
+      { "label": "View Demo", "href": "https://vyltrynsolutions.github.io/VD-WD/" }
     ]
   },
   {
